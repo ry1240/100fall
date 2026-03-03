@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>日本の滝100選</title>
+
+<style>
+body{
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background: #f3f6f9;
+  margin: 40px;
+}
+@media (max-width: 768px){
+    body{
+        margin: 15px;
+    }
+}
+
+/* タイトル */
+h1{
+  border-bottom: 2px solid #999;
+  padding-bottom: 10px;
+  margin:0;
+}
+
+.title-wrapper{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pie-wrapper{
+  position: relative;
+  width: 30px;
+  height: 30px;
+}
+
+.percentage-text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.section{
+  margin-top: 50px;
+}
+.subsection{
+  border-bottom: 1px solid #000;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.subsection:last-child{
+  border-bottom: none;
+}
+
+.section-title{
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+/* 青いライン */
+.section-line{
+  height: 6px;
+  background: linear-gradient(to right,#1f5f9b 0%,#5ba9d9 100%);
+  margin-bottom: 25px;
+}
+
+/* 2列レイアウト */
+.list{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 50px;
+}
+
+.pref-title {
+  margin-bottom: 0px;
+  font-weight: bold;
+  font-size: 13px
+}
+
+.items{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  gap: 100px;
+  align-items: center;
+}
+/* 各項目 */
+.item{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+/* 丸アイコン */
+.circle{
+  width: 8px;
+  height: 8px;
+  border: 2px solid #555;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.circle.active{
+  background: #333;
+}
+
+.rakusa{
+  font-size: 11px;
+  color: black;   
+  margin-left: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  align-self: flex-end;
+
+}
+.date{
+  color:#333;
+  font-size:10px;
+  align-self: flex-end;
+
+}
+/* リンク */
+a{
+  color: #1a5fb4;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+.place{
+  color: #555;
+  margin-left: 5px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="title-wrapper">
+  <h1>日本の滝 100選 33/100 </h1>
+    <div class="pie-wrapper">
+    <canvas id="pie" width="60" height="60"></canvas>
+    </div>
+</div>
+
+<script>
+//割合指定
+const percentage = 33; // %
+const canvas = document.getElementById('pie');
+const ctx = canvas.getContext('2d');
+
+
+// 中心と半径
+const centerX = canvas.width / 2;
+const centerY = canvas.height / 2;
+const radius = canvas.width / 2 - 2; 
+
+// 背景円
+ctx.beginPath();
+ctx.moveTo(centerX, centerY);
+ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+ctx.fillStyle = '#eee';
+ctx.fill();
+
+// 33% 部分（青）
+ctx.beginPath();
+ctx.moveTo(centerX, centerY);
+ctx.arc(centerX, centerY, radius, -0.5 * Math.PI, (percentage/100*2*Math.PI) - 0.5 * Math.PI);
+ctx.fillStyle = '#1f5f9b';
+ctx.fill();
+</script>
+
+
+<!-- 北海道 -->
+<div class="section">
+  <div class="section-title">北海道</div>
+  <div class="section-line"></div>
+
+  <div class="subsection">
+    <div class="subsection-title"></div>
+    <div class="list">
+
+        <div class="item">
+        <div class="circle"></div>
+        <a href="https://www.google.com/maps/@42.59961,139.99259,15z"
+            target="_blank"
+            rel="noopener noreferrer"
+        >賀老の滝</a>
+        <span class="rakusa">70m</span>
+        <span class="date"></span>
+        </div>
+
+        <div class="item">
+        <div class="circle"></div>
+        <a href="https://www.google.com/maps/@44.038,144.93519,15z"
+            target="_blank"
+            rel="noopener noreferrer"
+        >オシンコシンの滝</a>
+        <span class="rakusa">50m</span>
+        <span class="date"></span>
+        </div>
+        <div class="item">
+      <div class="circle"></div>
+      <a href="https://www.google.com/maps/@42.63677,141.33462,15z"
+            target="_blank"
+            rel="noopener noreferrer"
+      >インクラの滝</a>
+      <span class="rakusa">44m</span>
+      <span class="date"></span>
+    </div>
+    <div class="item">
+      <div class="circle"></div>
+      <a href="https://www.google.com/maps/@43.62652,142.78671,15z"
+        target="_blank"
+        rel="noopener noreferrer"
+      >羽衣の滝</a>
+      <span class="rakusa">270m</span>
+      <span class="date"></span>
+    </div>
+
+    <div class="item">
+      <div class="circle"></div>
+      <a href="https://www.google.com/maps/@42.91881,141.37241,17z"
+        target="_blank"
+        rel="noopener noreferrer"
+      >アシリベツの滝</a>
+      <span class="rakusa">26m</span>
+      <span class="date"></span>
+    </div>
+
+    <div class="item">
+      <div class="circle"></div>
+      <a href="https://www.google.com/maps/@43.71901,142.97745,15z"
+        target="_blank"
+        rel="noopener noreferrer">
+        流星・銀河の滝</a>
+      <span class="rakusa">90,104m</span>
+      <span class="date"></span>
+    </div>
+    </div>
+
+
+
+<!-- 東北 -->
+<div class="section">
+  <div class="section-title">東北</div>
+  <div class="section-line"></div>
+
+  <!--青森-->
+  <div class="subsection">
+    <div class="subsection-title">青森</div>
+    <div class="list">
+
+      <div class="item">
+          <div class="circle"></div>
+          <a href="https://www.google.com/maps/@40.55833,140.90638,17z"
+            target="_blank"
+            rel="noopener noreferrer"
+          >松見の滝</a>
+          <span class="rakusa">90m</span>
+          <span class="date"></span>
+      </div>
+
+      <div class="item">
+          <div class="circle"></div>
+          <a href="https://www.google.com/maps/@40.62887,140.11172,15z"
+            target="_blank"
+            rel="noopener noreferrer"
+          >くろくまの滝</a>
+          <span class="rakusa">85m</span>
+          <span class="date"></span>
+      </div>
+    </div>
+  </div>
+
+ <!--岩手-->
+  <div class="subsection">
+    <div class="subsection-title">岩手</div>
+    <div class="list">
+
+      <div class="item">
+        <div class="circle"></div>
+        <a href="https://www.google.com/maps/@40.06445,141.06073,15z"
+            target="_blank"
+            rel="noopener noreferrer"
+        >不動の滝</a>
+        <span class="rakusa">15m</span>
+        <span class="date"></span>
+      </div>
+
+    </div>
+  </div>
+
+  <!--秋田-->
+  <div class="subsection">
+      <div class="subsection-title">秋田</div>
+      <div class="list">
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@40.35565,140.78384,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >七滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date">(2025/8/12)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@39.94409,140.6135,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >安の滝</a>
+            <span class="rakusa">90m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@40.01167,140.74066,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >茶釜の滝</a>
+            <span class="rakusa">100m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@39.10806,140.15901,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >法体の滝</a>
+            <span class="rakusa">57m</span>
+            <span class="date"></span>
+        </div>
+
+      </div>
+  </div>
+
+  <!--宮城-->
+  <div class="subsection">
+      <div class="subsection-title">宮城</div>
+      <div class="list">
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@38.1317,140.52221,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >三階の滝</a>
+            <span class="rakusa">181m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@38.2752,140.60349,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >秋保大滝</a>
+            <span class="rakusa">55m</span>
+            <span class="date">(2023/10/11)</span>
+        </div>
+
+      </div>
+  </div>
+
+  <!--山形-->
+  <div class="subsection">
+      <div class="subsection-title">山形</div>
+      <div class="list">
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@38.56346,139.92119,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >七ツ滝</a>
+            <span class="rakusa">90m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@38.76555,140.05611,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >白糸の滝</a>
+            <span class="rakusa">120m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@37.77909,140.22095,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >滑川大滝</a>
+            <span class="rakusa">80m</span>
+            <span class="date"></span>
+        </div>
+
+      </div>
+  </div>
+
+  <!--福島-->
+  <div class="subsection">
+      <div class="subsection-title">福島</div>
+      <div class="list">
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.96553,139.25008,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >三条の滝</a>
+            <span class="rakusa">100m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@37.58403,140.26455,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >銚子ヶ滝</a>
+            <span class="rakusa">48m</span>
+            <span class="date">(2025/10/13)</span>
+        </div>
+        
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@37.24724,140.39135,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >乙字ヶ滝</a>
+            <span class="rakusa">6m</span>
+            <span class="date"></span>
+        </div>
+
+      </div>
+  </div>
+  
+</div>
+
+<!--関東-->
+<div class="section">
+  <div class="section-title">関東</div>
+  <div class="section-line"></div>
+
+  <!--茨城-->
+  <div class="subsection">
+      <div class="subsection-title">茨城</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.76446,140.407,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >袋田の滝</a>
+            <span class="rakusa">120m</span>
+            <span class="date">(2023/11/14)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--栃木-->
+  <div class="subsection">
+      <div class="subsection-title">栃木</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.73808,139.50194,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >華厳の滝</a>
+            <span class="rakusa">97m</span>
+            <span class="date">(2022/5/13, 2022/10/31, 2023/10/27)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.78012,139.62375,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >霧降の滝</a>
+            <span class="rakusa">75m</span>
+            <span class="date">(2025/11/22)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--群馬-->
+  <div class="subsection">
+      <div class="subsection-title">群馬</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.57162,139.05943,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >棚下不動の滝</a>
+            <span class="rakusa">37m</span>
+            <span class="date">(2024/11/24)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.64228,138.56847,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >常布の滝</a>
+            <span class="rakusa">70m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.70223,139.20732,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >吹割の滝</a>
+            <span class="rakusa">7m</span>
+            <span class="date">(2023/7/13, 2024/11/24, 2025/3/15)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--埼玉-->
+  <div class="subsection">
+      <div class="subsection-title">埼玉</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.99094,138.88201,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >丸神の滝</a>
+            <span class="rakusa">76m</span>
+            <span class="date">(2024/10/20)</span>
+        </div>
+      </div>
+      <div class="pref-line"></div>
+  </div>
+
+  <!--東京-->
+  <div class="subsection">
+      <div class="subsection-title">東京</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.72755,139.13912,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >払沢の滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date">(2022/8/2)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--神奈川-->
+  <div class="subsection">
+      <div class="subsection-title">神奈川</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.48831,139.16045,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >早戸大滝</a>
+            <span class="rakusa">50m</span>
+            <span class="date">(2025/4/27)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.35199,139.0624,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >洒水の滝</a>
+            <span class="rakusa">69m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!--中部-->
+<div class="section">
+  <div class="section-title">中部</div>
+  <div class="section-line"></div>
+
+  <!--山梨-->
+  <div class="subsection">
+      <div class="subsection-title">山梨</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.8646,138.73172,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >七ツ釜五段の滝</a>
+            <span class="rakusa">20m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.74964,138.56626,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >仙娥滝</a>
+            <span class="rakusa">30m</span>
+            <span class="date">(2023/10/17)</span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.72958,138.3258,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >北精進ヶ滝</a>
+            <span class="rakusa">180m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--静岡-->
+  <div class="subsection">
+      <div class="subsection-title">静岡</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.31286,138.58744,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >白糸の滝・音止めの滝</a>
+            <span class="rakusa">20,25m</span>
+            <span class="date">(2024/9/7)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@34.87193,138.92215,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >浄蓮の滝</a>
+            <span class="rakusa">25m</span>
+            <span class="date">(2022/2/-)</span>
+        </div>
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.30017,138.35164,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >阿部の大滝</a>
+            <span class="rakusa">80m</span>
+            <span class="date">(2025/6/29)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--長野-->
+  <div class="subsection">
+      <div class="subsection-title">長野</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.11849,137.59304,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >三本滝</a>
+            <span class="rakusa">50m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.63014,137.54669,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >田立の滝</a>
+            <span class="rakusa">40m</span>
+            <span class="date">(2024/10/16)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.56808,138.40522,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >米子大瀑布</a>
+            <span class="rakusa">89m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--新潟-->
+  <div class="subsection">
+      <div class="subsection-title">新潟</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@38.34381,139.66517,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >鈴ヶ滝</a>
+            <span class="rakusa">55m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.85024,138.13291,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >苗名滝</a>
+            <span class="rakusa">55m</span>
+            <span class="date">(2024/8/)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.90514,138.13716,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >惣滝</a>
+            <span class="rakusa">80m</span>
+            <span class="date">(2024/8/4)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--富山-->
+  <div class="subsection">
+      <div class="subsection-title">富山</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.5753,137.52341,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >称名滝</a>
+            <span class="rakusa">350m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--石川-->
+  <div class="subsection">
+      <div class="subsection-title">石川</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.25487,136.79849,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >姥ヶ滝</a>
+            <span class="rakusa">111m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--福井-->
+  <div class="subsection">
+      <div class="subsection-title">福井</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.92348,136.42261,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >龍双が滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date">(2024/8/10)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--岐阜-->
+  <div class="subsection">
+      <div class="subsection-title">岐阜</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@36.17702,137.55963,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >平湯大滝</a>
+            <span class="rakusa">64m</span>
+            <span class="date">(2025/8/31)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.28038,136.53426,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >養老の滝</a>
+            <span class="rakusa">32m</span>
+            <span class="date">(2024/3/13)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.93447,137.37916,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >根尾の滝</a>
+            <span class="rakusa">63m</span>
+            <span class="date">(2025/8/30)</span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.95948,136.81754,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >阿弥陀が滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--愛知-->
+  <div class="subsection">
+      <div class="subsection-title">愛知</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.95024,137.64559,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >阿寺の七滝</a>
+            <span class="rakusa">64m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+
+
+</div>
+
+<!--近畿-->
+<div class="section">
+  <div class="section-title">近畿</div>
+  <div class="section-line"></div>
+
+  <!--滋賀-->
+  <div class="subsection">
+      <div class="subsection-title">滋賀</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.26882,135.91897,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >八ツ淵の滝</a>
+            <span class="rakusa">30m</span>
+            <span class="date">(2025/6/21)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--三重-->
+  <div class="subsection">
+      <div class="subsection-title">三重</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.20922,136.15275,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >七ツ釜滝</a>
+            <span class="rakusa">120m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.5636,136.08574,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >赤目四十八滝</a>
+            <span class="rakusa">30m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.68259657786088,136.29638301701365,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >布引の滝</a>
+            <span class="rakusa">53m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--和歌山-->
+  <div class="subsection">
+      <div class="subsection-title">和歌山</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@33.67533,135.8876,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >那智の滝</a>
+            <span class="rakusa"></span>
+            <span class="date">(2024/9/21, 2025/7/26)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@33.64603,135.4787,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >八草の滝</a>
+            <span class="rakusa">22m</span>
+            <span class="date">(2024/9/21)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@33.72789,135.93315,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >桑ノ木の滝</a>
+            <span class="rakusa">21m</span>
+            <span class="date">(2024/9/21)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--奈良-->
+  <div class="subsection">
+      <div class="subsection-title">奈良</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.06049,135.85932,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >笹の滝</a>
+            <span class="rakusa">32m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.19897,135.89252,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >双門の滝</a>
+            <span class="rakusa">70m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.09651,135.95404,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >不動七重の滝</a>
+            <span class="rakusa">120m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.18348,136.08059,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >中の滝</a>
+            <span class="rakusa">250m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--京都-->
+  <div class="subsection">
+      <div class="subsection-title"></div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@35.52959,135.18293,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >金引の滝</a>
+            <span class="rakusa">40m</span>
+            <span class="date">(2025/6/22)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--大阪-->
+  <div class="subsection">
+      <div class="subsection-title">大阪</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@34.85382,135.47199,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >箕面大滝</a>
+            <span class="rakusa">33m</span>
+            <span class="date">(2024/9/22)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--兵庫-->
+  <div class="subsection">
+      <div class="subsection-title">兵庫</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.33528,134.60818,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >天滝</a>
+            <span class="rakusa">98m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.198,134.50178,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >原不動滝</a>
+            <span class="rakusa">88m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.43415,134.61481,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >猿尾滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.7097,135.19381,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >布引の滝</a>
+            <span class="rakusa">43m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!--中国-->
+<div class="section">
+  <div class="section-title">中国</div>
+  <div class="section-line"></div>
+
+  <!--鳥取-->
+  <div class="subsection">
+      <div class="subsection-title">鳥取</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.37496,133.59556,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >大山滝</a>
+            <span class="rakusa">42m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.47828,134.40459,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >雨滝</a>
+            <span class="rakusa">40m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--島根-->
+  <div class="subsection">
+      <div class="subsection-title">島根</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@36.2406,133.2359,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >壇鏡の滝</a>
+            <span class="rakusa">40m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.19527,132.78361,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >龍頭八重滝</a>
+            <span class="rakusa">40m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--岡山-->
+  <div class="subsection">
+      <div class="subsection-title">岡山</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@35.11828,133.67915,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >神庭の滝</a>
+            <span class="rakusa">110m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--広島-->
+  <div class="subsection">
+      <div class="subsection-title">広島</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.86308,132.72633,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >常清の滝</a>
+            <span class="rakusa">126m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--山口-->
+  <div class="subsection">
+      <div class="subsection-title">山口</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@34.43009,132.05481,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >寂地峡五竜の滝</a>
+            <span class="rakusa">70m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+</div>
+    
+
+<!--四国-->
+<div class="section">
+  <div class="section-title">四国</div>
+  <div class="section-line"></div>
+
+  <!--徳島-->
+  <div class="subsection">
+      <div class="subsection-title">徳島</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.88211,134.28199,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >大釜の滝</a>
+            <span class="rakusa">20m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.9509,134.33535,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >雨乞の滝</a>
+            <span class="rakusa">45m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.69731,134.25405,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >轟九十九滝</a>
+            <span class="rakusa">58m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--愛媛-->
+  <div class="subsection">
+      <div class="subsection-title">愛媛</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.75969,133.11266,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >御来光の滝</a>
+            <span class="rakusa">102m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.20037,132.64763,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >雪輪の滝</a>
+            <span class="rakusa">300m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--高知-->
+  <div class="subsection">
+      <div class="subsection-title">高知</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.71182,133.8342,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >轟の滝</a>
+            <span class="rakusa">83m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.7664,133.76133,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >龍王の滝</a>
+            <span class="rakusa">20m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.51741,133.24388,17z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >大樽の滝</a>
+            <span class="rakusa">34m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+</div>
+
+<!--九州-->
+<div class="section">
+  <div class="section-title">九州</div>
+  <div class="section-line"></div>
+
+  <!--佐賀-->
+  <div class="subsection">
+      <div class="subsection-title">佐賀</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.43609,130.12878,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >観音の滝</a>
+            <span class="rakusa">45m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.36797,130.03979,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >見帰りの滝</a>
+            <span class="rakusa">100m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+  <!--熊本-->
+  <div class="subsection">
+      <div class="subsection-title">熊本</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@32.19406,130.69452,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >鹿目の滝</a>
+            <span class="rakusa">36m</span>
+            <span class="date">(2025/10/5)</span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@32.88837,130.98904,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >数鹿流ヶ滝</a>
+            <span class="rakusa">60m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.00069,130.94975,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >四十三万滝</a>
+            <span class="rakusa">10m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@32.52156,130.88893,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >栴檀轟の滝</a>
+            <span class="rakusa">70m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+  <!--大分-->
+  <div class="subsection">
+      <div class="subsection-title">大分</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.16925,131.22564,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >振動の滝</a>
+            <span class="rakusa">83m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.35596,131.25045,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >西椎屋の滝</a>
+            <span class="rakusa">83m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@33.35947,131.38375,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >東椎屋の滝</a>
+            <span class="rakusa">85m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@32.96414,131.45121,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >原尻の滝</a>
+            <span class="rakusa">20m</span>
+            <span class="date">(2024/3/28)</span>
+        </div>
+      </div>
+  </div>
+  
+  <!--宮崎-->
+  <div class="subsection">
+      <div class="subsection-title">宮崎</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@31.76145,130.98725,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >関之尾滝</a>
+            <span class="rakusa">18m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@32.2931,131.47045,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >矢研の滝</a>
+            <span class="rakusa">73m</span>
+            <span class="date"></span>
+        </div>
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@32.62886,131.57884,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >行縢の滝</a>
+            <span class="rakusa">77m</span>
+            <span class="date"></span>
+        </div>
+
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@32.70245,131.30092,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >真名井の滝</a>
+            <span class="rakusa">17m</span>
+            <span class="date">(2024/3/30)</span>
+        </div>
+      </div>
+  </div>
+
+  <!--鹿児島-->
+  <div class="subsection">
+      <div class="subsection-title">鹿児島</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@30.29984,130.4137,15z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >大川の滝</a>
+            <span class="rakusa">88m</span>
+            <span class="date">(2025/10/3)</span>
+        </div>
+        <div class="item">
+            <div class="circle active"></div>
+            <a href="https://www.google.com/maps/@31.75264,130.66841,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >龍門滝</a>
+            <span class="rakusa">46m</span>
+            <span class="date">(2025/10/5)</span>
+        </div>
+      </div>
+  </div>
+  <!--沖縄-->
+  <div class="subsection">
+      <div class="subsection-title">沖縄</div>
+      <div class="list">
+        <div class="item">
+            <div class="circle"></div>
+            <a href="https://www.google.com/maps/@24.35719,123.80315,16z"
+                target="_blank"
+                rel="noopener noreferrer"
+            >マリュドウの滝</a>
+            <span class="rakusa">16m</span>
+            <span class="date"></span>
+        </div>
+      </div>
+  </div>
+
+
+</div>
+    
+   
+</body>
+</html>
