@@ -34,19 +34,21 @@ h1{
   margin-left: auto;
   font-size: 18px;
   font-weight: bold;
+  text-decoration: underline;
 }
 .pie-wrapper{
   position: relative;
   width: 30px;
   height: 30px;
+  margin: 0 auto;
 }
 
 .percentage-text{
   position: absolute;
-  top: 50%;
+  top: 180%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 12px;
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -123,13 +125,11 @@ h1{
   margin-right: 6px;
   vertical-align: sub;
   align-self: flex-end;
-
 }
 .date{
   color:#333;
   font-size:10px;
   align-self: flex-end;
-
 }
 /* リンク */
 a{
@@ -153,16 +153,16 @@ a:hover{
   <h1>日本の滝 100選  </h1>
     <div class="pie-wrapper">
     <canvas id="pie" width="60" height="60"></canvas>
-    <div class="percentage-text">33/100</div>
+    <div class="percentage-text">33/100</div> //％変更
     </div>
-  <a href="ittataki.html">行った滝</a>
+  <a href="ittataki.html">行った滝🌊</a>
 </div>
 
 <div id="container"></div>
 
 <script>
 //割合指定
-const percentage = 33; // %
+const percentage = 33; // ここで％変更
 const canvas = document.getElementById('pie');
 const ctx = canvas.getContext('2d');
 
@@ -353,13 +353,5 @@ for (const region in waterfalls) {
   container.appendChild(section);
 }
 </script>
-
 </body>
-
 </html>
-
-
-
-
-
-
