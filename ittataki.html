@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行った滝 </title>
+
+<style>
+body{
+  font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background: #f3f6f9;
+  margin: 40px;
+}
+@media (max-width: 768px){
+    body{
+        margin: 15px;
+    }
+}
+
+h1{
+  border-bottom: 2px solid #999;
+  padding-bottom: 10px;
+  margin:0;
+}
+
+.section{
+  margin-bottom: 40px;
+}
+
+.section-title{
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.section-line{
+  height: 5px;
+  background: #1976d2;
+  margin: 8px 0 16px;
+}
+
+.subsection{
+  margin-bottom: 20px;
+}
+
+.subsection-title{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.list{
+  padding-left: 10px;
+}
+
+.item{
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.circle{
+  position: relative;      /* ← 必須 */
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  margin-right: 8px;
+}
+
+/* active時の内側 */
+.circle.active{
+  background: #fff;
+}
+
+/* 外側リング（10pxで囲む） */
+.circle.active::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #333;
+  transform: translate(-50%, -50%);
+}
+.circle.none{
+  display: none;
+}
+
+/* リンク */
+a{
+  color: #333;
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+
+.rakusa{
+  font-size: 11px;
+  color: black;   
+  margin-left: 5px;
+  margin-right: 6px;
+  vertical-align: sub;
+  align-self: flex-end;
+}
+
+.date{
+  color: #333;
+  font-size: 10px;
+  align-self: flex-end;
+}
+</style>
+</head>
+
+<body>
+
+<h1>行った滝 </h1>
+
+<div id="container"></div>
+
+<script>
+    //{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}
+const waterfalls = {
+  /*
+  "北海道":{
+
+  },
+  */
+  "東北": {
+    "青森":[{ name: "奥入瀬渓流", height: "", date: "(2025/8/10)", url: "https://www.google.com/maps/@40.51283,140.96567,14z"},
+            { name: "　銚子大滝", height: "7m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
+            { name: "　白糸の滝", height: "30m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
+            { name: "　雲井の滝", height: "20m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
+            { name: "　白絹の滝", height: "30m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
+            { name: "中滝", height: "12m", date: "(2025/8/10)", url: "https://www.google.com/maps/@40.374505,140.882600,17z"}
+    ],
+    //"岩手": [{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "秋田": [
+      { name: "七滝", height: "60m", date: "(2025/8/12)", url: "https://www.google.com/maps/@40.35565,140.78384,16z", state: "active"},
+    ],
+    
+    "宮城":[{ name: "秋保大滝", height: "55m", date: "(2023/10/11)", url: "https://www.google.com/maps/@38.2752,140.60349,15z",state: "active"}
+    ],
+    //"山形":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "福島":[{ name: "銚子ヶ滝", height: "48m", date: "(2025/10/13)", url: "https://www.google.com/maps/@37.58403,140.26455,15z", state: "active"},
+            { name: "達沢不動滝", height: "10m", date: "(2025/10/13)", url: "https://www.google.com/maps/@37.593321,140.230479,15z"}
+    ]
+  },
+
+  "関東": {
+    "茨城":[{ name: "袋田の滝", height: "120m", date: "(2023/11/14)", url: "https://www.google.com/maps/@36.76446,140.407,15z",state: "active"},
+            { name: "月待の滝", height: "17m", date: "(2023/11/14)", url: "https://www.google.com/maps/@36.810207,140.374021,15z"}
+    ],
+    "栃木": [
+      { name: "華厳の滝", height: "97m", date: "（2022/5/13, 2022/10/31, 2023/10/27)", url: "https://www.google.com/maps/@36.73808,139.50194,15z", state: "active"},
+      { name: "霧降の滝", height: "75m", date: "(2025/11/22)", url: "https://www.google.com/maps/@36.78012,139.62375,15z", state: "active"},
+      { name: "竜頭の滝", height: "60m(210m)", date: "（2022/5/13, 2023/10/27)", url: "https://www.google.com/maps/@36.758809,139.451464,15z"},
+      { name: "湯滝", height: "70m", date: "（2022/10/31, 2023/10/27)", url: "https://www.google.com/maps/@36.795605,139.428718,15z"},
+      { name: "乙女の滝", height: "10m", date: "(2023/7/26)", url: "https://www.google.com/maps/@37.067127,139.937542,15z"}
+    ],
+    "群馬": [
+      { name: "吹割の滝", height: "7m", date: "(2023/7/13, 2024/11/24, 2025/3/15)", url: "https://www.google.com/maps/@36.70223,139.20732,15z", state: "active"},
+      { name: "棚下不動の滝", height: "37m", date: "(2024/11/24)", url: "https://www.google.com/maps/@36.57162,139.05943,16z", state: "active"},
+      { name: "鱒飛の滝", height: "15m", date: "(2024/11/24)", url: "https://www.google.com/maps/@36.70223,139.20732,15z" ,state:""},
+      { name: "小中大滝", height: "96m", date: "(2024/11/24)", url: "https://www.google.com/maps/@36.585510,139.325694,18z",state:""}
+    ],
+    "千葉":[{ name: "粟又の滝", height: "30m", date: "(2022/9/29)", url: "https://www.google.com/maps/@35.218998,140.182766,15z"},
+           { name: "濃溝の滝", height: "", date: "(2025/6/8)", url: "https://www.google.com/maps/@35.185463,140.060573,15z"}
+    ],
+    "埼玉":[{ name: "丸神の滝", height: "76m", date: "(2024/10/20)", url: "https://www.google.com/maps/@35.99094,138.88201,15z", state: "active"},
+            { name: "黒山三滝", height: "", date: "(2024/12/22)", url: "https://www.google.com/maps/@35.941044,139.245177,15z"},
+            { name: "　男滝・女滝", height: "11m,5m", date: "", url: "https://www.google.com/maps/@35.941044,139.245177,15z",state:"none"},
+            { name: "　天狗滝", height: "14m", date: "", url: "https://www.google.com/maps/@35.941044,139.245177,15z",state:"none"},
+            { name: "獅子の滝", height: "", date: "(2024/12/22)", url: "https://www.google.com/maps/@35.92388,139.27406,18z"},
+            { name: "秩父華厳の滝", height: "10m", date: "(2024/10/20)", url: "https://www.google.com/maps/@36.084503,139.041624,16z"},
+            { name: "宿谷の滝", height: "12m", date: "(2024/12/22)", url: "https://www.google.com/maps/@35.911649,139.296989,16z"},
+            { name: "上空滝", height: "10m", date: "(2024/10/20)", url: "https://www.google.com/maps/@36.089678,139.038750,16z"},
+            { name: "不動滝", height: "25m", date: "(2024/10/20)", url: "https://www.google.com/maps/@36.089678,139.038750,16z"}
+          ],
+    "東京":[{ name: "払沢の滝", height: "60m", date: "(2022/8/2)", url: "https://www.google.com/maps/@35.72755,139.13912,15z", state: "active"},
+            { name: "三頭大滝", height: "30m", date: "(2025/5/11)", url: "https://www.google.com/maps/@35.734861,139.026354,15z"},
+            { name: "夢の滝", height: "19m", date: "(2025/5/11)", url: "https://www.google.com/maps/@35.732686,139.039571,15z"},
+            { name: "菅平の滝", height: "10m", date: "(2025/5/11)", url: "https://www.google.com/maps/@35.733933,139.038382,15z"},
+            { name: "龍神の滝", height: "18m", date: "(2025/5/11)", url: "https://www.google.com/maps/@35.724380,139.056822,15z"}
+          ],
+    "神奈川":[{ name: "早戸大滝", height: "50m", date: "(2025/4/27)", url: "https://www.google.com/maps/@35.48831,139.16045,15z", state: "active"},
+            { name: "エビラ沢の滝", height: "m", date: "(2024/5/5)", url: "https://www.google.com/maps/@35.524366,139.106694,15z"},
+            { name: "不動滝", height: "m", date: "(2024/7/21)", url: "https://www.google.com/maps/@35.152991,139.067145,15z"}
+          ]
+  },
+
+  "中部":{
+    "山梨":[{ name: "仙娥滝", height: "30m", date: "(2023/10/17)", url: "https://www.google.com/maps/@35.74964,138.56626,15z", state: "active"},
+            { name: "吐竜の滝", height: "10m", date: "(2024/5/2)", url: "https://www.google.com/maps/@35.914418,138.419409,15z"},
+            { name: "鐘山の滝", height: "10m", date: "(2024/12/7)", url: "https://www.google.com/maps/@35.457255,138.806977,15z"},
+            { name: "田原の滝", height: "", date: "(2024/12/7)", url: "https://www.google.com/maps/@35.540116,138.889654,15z"},
+            { name: "太郎・次郎の滝", height: "10m", date: "(2024/12/7)", url: "https://www.google.com/maps/@35.538875,138.868547,15z"},
+            { name: "白糸の滝", height: "50m", date: "(2024/12/7)", url: "https://www.google.com/maps/@35.524955,138.814304,15z"},
+            { name: "雄滝・雌滝", height: "10m", date: "(2025/12/13)", url: "https://www.google.com/maps/@,15z"},
+            { name: "白糸の滝", height: "36m", date: "(2025/12/13)", url: "https://www.google.com/maps/@,15z"}
+          ],
+    "静岡":[{ name: "白糸の滝・音止めの滝", height: "20m,25m", date: "(2024/9/7)", url: "https://www.google.com/maps/@35.31286,138.58744,15z", state: "active"},
+            { name: "浄蓮の滝", height: "25m", date: "(2022/2/-)", url: "https://www.google.com/maps/@34.87193,138.92215,15z", state: "active"},
+            { name: "阿部の大滝", height: "80m", date: "(2025/6/29)", url: "https://www.google.com/maps/@35.30017,138.35164,15z", state: "active"},
+            { name: "鮎壺の滝", height: "9m", date: "(2024/10/19)", url: "https://www.google.com/maps/@35.131060,138.892637,15z"},
+            { name: "三段滝", height: "25m", date: "(2025/6/29)", url: "https://www.google.com/maps/@35.308656,138.338306,15z"},
+            { name: "赤水の滝", height: "50m", date: "(2025/6/29)", url: "https://www.google.com/maps/@35.273263,138.327521,15z"},
+            { name: "萬城の滝", height: "20m", date: "(2024/1/3)", url: "https://www.google.com/maps/@34.906019,138.993255,15z"},
+            { name: "三段滝", height:"",date:"(2024/1/3)",url:"https://www.google.com/maps/@34.809224,138.975482,15z"}
+          ],
+    "長野":[{ name: "田立の滝", height: "", date: "(2024/10/13)", url: "https://www.google.com/maps/@35.63014,137.54669,15z", state:"active"},
+            { name: "（天河の滝", height: "40m", date: "", url: "https://www.google.com/maps/@35.63014,137.54669,15z", state:"none"},
+            { name: "（霧ヶ滝", height: "30m", date: "", url: "https://www.google.com/maps/@35.63014,137.54669,15z", state:"none"},
+            { name: "白糸の滝", height: "3m", date: "", url: "https://www.google.com/maps/@36.409783,138.593110,15z"}
+          ],
+    "新潟":[{ name: "苗名滝", height: "55m", date: "(2024/8/4)", url: "https://www.google.com/maps/@36.85024,138.13291,15z", state: "active"},
+            { name: "惣滝", height: "80m", date: "(2024/8/4)", url: "https://www.google.com/maps/@36.90514,138.13716,15z", state: "active"}
+          ],
+    //"富山":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"石川":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "福井":[{ name: "龍双が滝", height: "60m", date: "(2024/8/10)", url: "https://www.google.com/maps/@35.92348,136.42261,15z", state: "active"},
+            { name: "一条滝", height: "12m", date: "(2024/8/10)", url: "https://www.google.com/maps/@35.978496,136.307628,15z"}
+          ],
+    "岐阜":[{ name: "平湯大滝", height: "64m", date: "(2025/8/31)", url: "https://www.google.com/maps/@36.17702,137.55963,15z", state: "active"},
+            { name: "養老の滝", height: "30m", date: "(2024/3/13)", url: "https://www.google.com/maps/@35.28038,136.53426,15z", state: "active"},
+            { name: "根尾の滝", height: "63m", date: "(2025/8/30)", url: "https://www.google.com/maps/@35.93447,137.37916,15z", state: "active"},
+            { name: "観音滝", height: "63m", date: "(2025/8/30)", url: "https://www.google.com/maps/@35.697509,137.442666,15z", state: ""},
+            { name: "不動滝", height: "63m", date: "(2025/8/30)", url: "https://www.google.com/maps/@35.697509,137.442666,15z", state: ""},
+          ],
+    //"愛知":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+  },
+
+  "近畿":{
+    "滋賀":[{ name: "八淵の滝", height: "", date: "(2025/6/21)", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "active"},
+            { name: "（魚止の滝", height: "", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"},        
+            { name: "（障子ヶ滝", height: "", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"},
+            { name: "（大摺鉢", height: "", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"},
+            { name: "（小摺鉢", height: "", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"},
+            { name: "（屏風ヶ淵", height: "", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"},
+            { name: "（貴船の滝", height: "30m", date: "", url: "https://www.google.com/maps/@35.26882,135.91897,15z", state: "none"}
+          ],
+    //"三重":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "和歌山":[{ name: "那智の滝", height: "133m", date: "(2024/9/21, 2025/7/26)", url: "https://www.google.com/maps/@33.67533,135.8876,15z" , state: "active"},
+            { name: "八草の滝", height: "22m", date: "(2024/9/21)", url: "https://www.google.com/maps/@33.64603,135.4787,16z", state: "active"},
+            { name: "桑の木の滝", height: "21m", date: "(2024/9/21)", url: "https://www.google.com/maps/@33.72789,135.93315,15z", state: "active"},
+            { name: "飛雪の滝", height: "30m", date: "(2025/7/26)", url: "https://www.google.com/maps/@33.758832,135.926244,17z"}
+          ],
+    //"奈良":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "京都":[{ name: "金引の滝", height: "40m", date: "(2025/6/22)", url: "https://www.google.com/maps/@35.52959,135.18293,15z", state: "active"}
+           ],
+    "大阪":[{ name: "箕面大滝", height: "33m", date: "(2024/9/22)", url: "https://www.google.com/maps/@34.85382,135.47199,15z", state: "active"},
+            { name: "垂水の瀧", height: "", date: "(2024/9/22)", url: "https://www.google.com/maps/@34.766630,135.504031,18z"}
+          ],
+    //"兵庫":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+  },
+
+  /*"中国":{
+    //"鳥取":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"島根":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"岡山":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"広島":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"山口":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+  },*/
+
+  "四国":{
+    "徳島":[{ name: "琵琶の滝", height: "25m", date: "(2023/8/22)", url: "https://www.google.com/maps/@33.875319,133.836170,15z"}
+    ],
+    //"愛媛":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "高知":[{ name: "にこ淵", height: "10m", date: "(2023/8/24)", url: "https://www.google.com/maps/@33.705019,133.34111,15z"}
+    ],
+    //"香川":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}]
+  },
+
+  "九州":{
+    //"佐賀":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"長崎":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    //"福岡":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}],
+    "熊本":[{ name: "鹿目の滝", height: "", date: "(2025/10/5)", url: "https://www.google.com/maps/@32.19406,130.69452,15z", state: "active"},
+            { name: "（雄滝", height: "36m", date: "", url: "https://www.google.com/maps/@32.19406,130.69452,15z", state: "none"},
+            { name: "（平滝", height: "36m", date: "", url: "https://www.google.com/maps/@32.19406,130.69452,15z", state: "none"},
+            { name: "鍋ヶ滝", height: "", date: "", url: "https://www.google.com/maps/@33.137386,131.035588,15z"}
+          ],
+    "大分":[{ name: "原尻の滝", height: "20m", date: "(2024/3/28)", url: "https://www.google.com/maps/@32.96414,131.45121,15z", state: "active"},
+            { name: "黄牛の滝", height: "25m", date: "(2024/3/28)", url: "https://www.google.com/maps/@32.991657,131.302998,15z"}
+          ],
+    "宮崎":[{ name: "真名井の滝", height: "17m", date: "(2024/3/30)", url: "https://www.google.com/maps/@32.70245,131.30092,16z", state: "active"},
+            { name: "うのこの滝", height: "20m", date: "(2024/3/30)", url: "https://www.google.com/maps/@32.692459,131.184690,15z"}
+          ],
+    "鹿児島":[{ name: "曾木の滝", height: "12m", date: "(2024/3/29,2025/10/5)", url: "https://www.google.com/maps/@32.011304,130.576900,15z"},
+            { name: "大川の滝", height: "88m", date: "(2025/10/3)", url: "https://www.google.com/maps/@30.29984,130.4137,15z", state: "active"},
+            { name: "千尋の滝", height: "60m", date: "(2025/10/3)", url: "https://www.google.com/maps/@30.262092,130.581747,15z"},
+            { name: "龍門の滝", height: "46m", date: "(2025/10/5)", url: "https://www.google.com/maps/@31.75264,130.66841,16z", state: "active"}
+          ],
+    //"沖縄":[{ name: "", height: "m", date: "", url: "https://www.google.com/maps/@,15z"}]
+  },
+
+  "韓国":{
+        "":[{ name: "Cafe Pokpo", height: "", date: "", url: "https://www.google.com/maps/@37.581275,126.937051,17z"}  
+  ]},
+  "フィリピン":{
+    "":[{ name: "Kawasan Falls", height: "", date: "", url: "https://www.google.com/maps/@9.803447,123.374354,15z"},
+        { name: "Kabukalan Spring", height: "", date: "", url: "https://www.google.com/maps/@9.803602,123.380697,15z"}  
+  ]}
+};
+
+// =====================
+// 自動生成処理
+// =====================
+
+const container = document.getElementById("container");
+
+for (const region in waterfalls) {
+
+  const section = document.createElement("div");
+  section.className = "section";
+
+  section.innerHTML = `
+    <div class="section-title">${region}</div>
+    <div class="section-line"></div>
+  `;
+
+  for (const pref in waterfalls[region]) {
+
+    const sub = document.createElement("div");
+    sub.className = "subsection";
+
+    let html = `
+      <div class="subsection-title">${pref}</div>
+      <div class="list">
+    `;
+
+    waterfalls[region][pref].forEach(w => {
+      html += `
+        <div class="item">
+          <div class="circle ${w.state || ""}"></div>
+          <a href="${w.url}" target="_blank" rel="noopener noreferrer">${w.name}</a>
+          <span class="rakusa">${w.height}</span>
+          <span class="date">${w.date ?  w.date : ""}</span>
+        </div>
+      `;
+    });
+
+    html += "</div>";
+    sub.innerHTML = html;
+    section.appendChild(sub);
+  }
+
+  container.appendChild(section);
+}
+</script>
+
+</body>
+</html>
