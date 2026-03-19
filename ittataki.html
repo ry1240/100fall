@@ -17,6 +17,33 @@ body{
     }
 }
 
+.memo{
+  display: none;
+  border-left: 4px solid #1976d2;
+  padding: 8px 10px;
+  margin-left: 6px;
+  font-size: 14px;
+  color: #333;
+  white-space: nowrap;
+}
+.memo::before{
+  content: "";
+  margin-right: 2px;
+}
+
+@media (max-width: 768px){
+  .date:active + .memo{
+    display: inline-block;
+  }
+}
+/*PC*/
+@media (min-width: 769px){
+  .memo{
+    display: inline-block;
+  }
+}
+
+
 h1{
   border-bottom: 2px solid #999;
   padding-bottom: 10px;
@@ -57,6 +84,7 @@ h1{
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: nowrap;
 }
 
 .circle{
@@ -139,7 +167,7 @@ const waterfalls = {
   },
   */
   "東北": {
-    "青森":[{ name: "奥入瀬渓流", height: "", date: "(2025/8/10)", url: "https://www.google.com/maps/@40.51283,140.96567,14z"},
+    "青森":[{ name: "奥入瀬渓流", height: "", date: "(2025/8/10)", url: "https://www.google.com/maps/@40.51283,140.96567,14z",memo:"o"},
             { name: "　銚子大滝", height: "7m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
             { name: "　白糸の滝", height: "30m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
             { name: "　雲井の滝", height: "20m", date: "", url: "https://www.google.com/maps/@40.48839,140.95127,15z",state: "none"},
@@ -350,6 +378,7 @@ for (const region in waterfalls) {
           <a href="${w.url}" target="_blank" rel="noopener noreferrer">${w.name}</a>
           <span class="rakusa">${w.height}</span>
           <span class="date">${w.date ?  w.date : ""}</span>
+           <span class="memo-bubble">${w.memo ? w.memo : ""}</span>
         </div>
       `;
     });
@@ -366,5 +395,4 @@ for (const region in waterfalls) {
 </body>
 
 </html>
-
 
