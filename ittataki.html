@@ -30,19 +30,65 @@ body{
   content: "";
   margin-right: 2px;
 }
-
-@media (max-width: 768px){
-  .date:active + .memo{
-    display: inline-block;
-  }
-}
-/*PC*/
-@media (min-width: 769px){
-  .memo{
-    display: inline-block;
-  }
+.show-memo .memo{
+  display: inline-block;
 }
 
+.toggle-wrap{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0 20px;
+}
+
+.toggle-text{
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.switch{
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+}
+
+.switch input{
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider{
+  position: absolute;
+  inset: 0;
+  background: #ccc;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.slider::before{
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.25s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+}
+
+.switch input:checked + .slider{
+  background: #1976d2;
+}
+
+.switch input:checked + .slider::before{
+  transform: translateX(20px);
+}
 
 h1{
   border-bottom: 2px solid #999;
@@ -154,6 +200,14 @@ a:hover{
 <div class="title-wrapper"> 
   <h1>行った滝 98</h1>
   <a href="index.html">✅100滝</a>
+</div>
+
+<div class="toggle-wrap">
+  <label class="switch">
+    <input type="checkbox" id="memoToggle">
+    <span class="slider"></span>
+  </label>
+  <span class="toggle-text">感想ON</span>
 </div>
 
 <div id="container"></div>
@@ -378,8 +432,8 @@ for (const region in waterfalls) {
           <a href="${w.url}" target="_blank" rel="noopener noreferrer">${w.name}</a>
           <span class="rakusa">${w.height}</span>
           <span class="date">${w.date ?  w.date : ""}</span>
-          <span class="memo">${w.memo ? w.memo : ""}</span>
-        </div>
+          ${w.memo ? `<span class="memo">${w.memo}</span>` : ""}
+          </div>
       `;
     });
 
@@ -390,6 +444,10 @@ for (const region in waterfalls) {
 
   container.appendChild(section);
 }
+const memoToggle = document.getElementById("memoToggle");
+memoToggle.addEventListener("change", function () {
+  document.body.classList.toggle("show-memo", this.checked);
+});
 </script>
 
 </body>
